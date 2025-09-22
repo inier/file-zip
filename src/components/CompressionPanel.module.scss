@@ -1,0 +1,206 @@
+@import '../styles/mixins';
+
+.compressionPanel {
+  @include card-style();
+  padding: $spacing-xxl;
+}
+
+.panelTitle {
+  color: white;
+  margin: 0 0 $spacing-xl 0;
+  font-size: $font-size-xl;
+  font-weight: 600;
+}
+
+.panelContent {
+  @include flex-column();
+  gap: $spacing-xl;
+}
+
+.formGroup {
+  @include flex-column();
+  gap: $spacing-sm;
+}
+
+.formLabel {
+  color: white;
+  font-weight: 500;
+  font-size: $font-size-base;
+}
+
+.levelDesc {
+  color: $white-transparent-60;
+  font-weight: 400;
+  font-size: $font-size-sm;
+}
+
+.formSelect {
+  @include input-style();
+
+  option {
+    background: #2D3748;
+    color: white;
+  }
+}
+
+.formInput {
+  @include input-style();
+}
+
+.levelContainer {
+  @include flex-column();
+  gap: $spacing-sm;
+}
+
+.formRange {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: $white-transparent-20;
+  outline: none;
+  -webkit-appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $info-color;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: $shadow-small;
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $info-color;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: $shadow-small;
+  }
+}
+
+.levelLabels {
+  @include flex-between();
+  font-size: $font-size-xs;
+  color: $white-transparent-60;
+}
+
+.warningMessage {
+  background: rgba($warning-color, 0.2);
+  border: 1px solid rgba($warning-color, 0.4);
+  border-radius: $border-radius-medium;
+  padding: $spacing-md;
+  color: $warning-color;
+  font-size: $font-size-base;
+}
+
+.compressButton {
+  @include button-base();
+  background: linear-gradient(135deg, $success-color, #45a049);
+  color: white;
+  padding: $border-radius-xlarge $spacing-xxl;
+  font-size: $font-size-md;
+  box-shadow: $shadow-button rgba($success-color, 0.3);
+
+  @include button-hover($success-color);
+
+  &.disabled {
+    background: $white-transparent-20;
+    color: $white-transparent-60;
+    box-shadow: none;
+    cursor: not-allowed;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.loadingSpinner {
+  @include loading-spinner();
+}
+
+.fileSummary {
+  @include glass-effect(rgba(255, 255, 255, 0.05));
+  border-radius: $border-radius-medium;
+  padding: $border-radius-xlarge;
+  @include flex-column();
+  gap: $spacing-sm;
+}
+
+.summaryItem {
+  @include flex-between();
+}
+
+.summaryLabel {
+  color: $white-transparent-80;
+  font-size: $font-size-base;
+}
+
+.summaryValue {
+  color: white;
+  font-weight: 500;
+  font-size: $font-size-base;
+}
+
+// 进度条样式
+.progressContainer {
+  @include flex-column();
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: $white-transparent-20;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $success-color, #4CAF50);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.progressText {
+  color: $white-transparent-80;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+// 错误消息样式
+.errorMessage {
+  background: rgba($error-color, 0.2);
+  border: 1px solid rgba($error-color, 0.4);
+  border-radius: $border-radius-medium;
+  padding: $spacing-md;
+  color: $error-color;
+  font-size: $font-size-base;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+  
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+@include mobile {
+  .compressionPanel {
+    padding: $spacing-xl;
+  }
+
+  .compressButton {
+    padding: 14px $spacing-xl;
+    font-size: $font-size-base;
+  }
+}

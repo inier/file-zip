@@ -1,0 +1,139 @@
+@import '../styles/mixins';
+
+.file-list {
+  @include card-style();
+  @include custom-scrollbar();
+}
+
+.file-list-header {
+  @include flex-between();
+  padding: $spacing-xl $spacing-xxl;
+  border-bottom: 1px solid $white-transparent-10;
+}
+
+.file-list-title {
+  color: white;
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: 600;
+}
+
+.file-list-actions {
+  @include flex-center();
+  gap: $border-radius-xlarge;
+}
+
+.total-size {
+  color: $white-transparent-80;
+  font-size: $font-size-base;
+}
+
+.clear-button {
+  @include flex-center();
+  gap: 6px;
+  background: rgba($error-color, 0.2);
+  color: #FF6B6B;
+  border: 1px solid rgba($error-color, 0.3);
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-medium;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($error-color, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.file-list-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.file-item {
+  @include flex-center();
+  padding: $border-radius-xlarge $spacing-xxl;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.file-icon {
+  font-size: $font-size-xxl;
+  margin-right: $border-radius-xlarge;
+  min-width: 24px;
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 4px;
+  @include text-ellipsis();
+}
+
+.file-details {
+  display: flex;
+  gap: $border-radius-xlarge;
+  font-size: $font-size-sm;
+  color: $white-transparent-60;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.file-size {
+  font-weight: 500;
+  color: $white-transparent-80;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  color: $white-transparent-60;
+  cursor: pointer;
+  padding: $spacing-sm;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  margin-left: $spacing-md;
+
+  &:hover {
+    color: #FF6B6B;
+    background: rgba($error-color, 0.1);
+    transform: scale(1.1);
+  }
+}
+
+@include mobile {
+  .file-list-header {
+    flex-direction: column;
+    gap: $spacing-md;
+    align-items: stretch;
+  }
+
+  .file-list-actions {
+    justify-content: space-between;
+  }
+
+  .file-item {
+    padding: $spacing-md $border-radius-xlarge;
+  }
+
+  .file-icon {
+    margin-right: $spacing-md;
+  }
+}

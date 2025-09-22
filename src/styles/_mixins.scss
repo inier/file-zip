@@ -1,0 +1,146 @@
+@import 'variables';
+
+// 毛玻璃效果混合
+@mixin glass-effect($background: $white-transparent-10, $border: $white-transparent-20) {
+  background: $background;
+  backdrop-filter: blur(10px);
+  border: 1px solid $border;
+}
+
+// 按钮样式混合
+@mixin button-base() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  border: none;
+  border-radius: $border-radius-large;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:disabled {
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin button-hover($shadow-color) {
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($shadow-color, 0.4);
+  }
+}
+
+// 卡片样式混合
+@mixin card-style() {
+  @include glass-effect();
+  border-radius: $border-radius-xlarge;
+  overflow: hidden;
+  margin-bottom: $spacing-xxl;
+}
+
+// 输入框样式混合
+@mixin input-style() {
+  @include glass-effect($white-transparent-10, $white-transparent-30);
+  border-radius: $border-radius-medium;
+  padding: $spacing-md $border-radius-xlarge;
+  color: white;
+  font-size: $font-size-base;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $info-color;
+    background: $white-transparent-15;
+  }
+  
+  &::placeholder {
+    color: $white-transparent-50;
+  }
+}
+
+// 滚动条样式混合
+@mixin custom-scrollbar() {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $white-transparent-10;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $white-transparent-30;
+    border-radius: 4px;
+    
+    &:hover {
+      background: $white-transparent-50;
+    }
+  }
+}
+
+// 响应式断点混合
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+// 加载动画混合
+@mixin loading-spinner($size: 16px, $border-width: 2px) {
+  width: $size;
+  height: $size;
+  border: $border-width solid $white-transparent-30;
+  border-top: $border-width solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Flex布局混合
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+// 文本省略混合
+@mixin text-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 背景渐变混合
+@mixin gradient-background() {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+}

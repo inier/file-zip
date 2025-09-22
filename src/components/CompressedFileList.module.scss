@@ -1,0 +1,220 @@
+@import '../styles/mixins';
+
+.compressed-file-list {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.compressed-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.compressed-list-title {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.compressed-list-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.compression-summary {
+  color: #4CAF50;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.clear-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(244, 67, 54, 0.2);
+  color: #FF6B6B;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-button:hover {
+  background: rgba(244, 67, 54, 0.3);
+  transform: translateY(-1px);
+}
+
+.compressed-list-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.compressed-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.compressed-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.compressed-item:last-child {
+  border-bottom: none;
+}
+
+.compressed-icon {
+  font-size: 1.5rem;
+  margin-right: 16px;
+  min-width: 24px;
+}
+
+.compressed-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.compressed-name {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compressed-details {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  flex-wrap: wrap;
+}
+
+.compressed-format {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.compressed-size {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.compression-ratio {
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.compressed-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.download-button:hover {
+  background: rgba(76, 175, 80, 0.3);
+  transform: translateY(-1px);
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.remove-button:hover {
+  color: #FF6B6B;
+  background: rgba(244, 67, 54, 0.1);
+  transform: scale(1.1);
+}
+
+/* 自定义滚动条 */
+.compressed-list-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.compressed-list-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.compressed-list-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.compressed-list-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .compressed-list-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .compressed-list-actions {
+    justify-content: space-between;
+  }
+
+  .compressed-item {
+    padding: 12px 16px;
+  }
+
+  .compressed-details {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .compressed-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .download-button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .compressed-icon {
+    margin-right: 12px;
+  }
+}

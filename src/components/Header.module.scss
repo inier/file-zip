@@ -1,0 +1,56 @@
+@import '../styles/mixins';
+
+.header {
+  @include glass-effect();
+  border-radius: $border-radius-xxlarge;
+  padding: $spacing-xxl $spacing-xxxl;
+  margin-bottom: $spacing-xxxl;
+  box-shadow: $shadow-large;
+}
+
+.headerContent {
+  @include flex-between();
+}
+
+.headerText {
+  flex: 1;
+}
+
+.headerTitle {
+  font-size: $font-size-title;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: $shadow-small;
+}
+
+.headerSubtitle {
+  font-size: $font-size-xl;
+  color: $white-transparent-80;
+  margin: $spacing-sm 0 0 0;
+  font-weight: 400;
+}
+
+.headerIcon {
+  color: $white-transparent-90;
+  margin-left: $spacing-xxl;
+}
+
+@include mobile {
+  .header {
+    padding: $spacing-xl $spacing-xxl;
+    margin-bottom: $spacing-xxl;
+  }
+
+  .headerTitle {
+    font-size: $font-size-xxxl;
+  }
+
+  .headerSubtitle {
+    font-size: $font-size-md;
+  }
+
+  .headerIcon {
+    display: none;
+  }
+}

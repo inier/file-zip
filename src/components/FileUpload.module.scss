@@ -1,0 +1,132 @@
+@import '../styles/mixins';
+
+.fileUpload {
+  margin-bottom: $spacing-xxl;
+}
+
+.uploadArea {
+  position: relative;
+  border: 2px dashed $white-transparent-30;
+  border-radius: $border-radius-xlarge;
+  @include glass-effect(rgba(255, 255, 255, 0.05));
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $white-transparent-50;
+    background: $white-transparent-10;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.dragOver {
+  border-color: $success-color;
+  background: rgba($success-color, 0.1);
+  transform: scale(1.02);
+}
+
+.uploadContent {
+  padding: 48px $spacing-xxxl;
+  text-align: center;
+  position: relative;
+}
+
+.uploadIcon {
+  color: $white-transparent-70;
+  margin-bottom: $spacing-xxl;
+  transition: transform 0.3s ease;
+
+  .uploadArea:hover & {
+    transform: translateY(-4px);
+  }
+
+  .dragOver & {
+    color: $success-color;
+    transform: scale(1.1);
+  }
+}
+
+.uploadText {
+  color: white;
+}
+
+.uploadTitle {
+  font-size: $font-size-xxl;
+  font-weight: 600;
+  margin: 0 0 $spacing-md 0;
+  text-shadow: $shadow-small;
+}
+
+.uploadSubtitle {
+  font-size: $font-size-lg;
+  margin: 0 0 $border-radius-xlarge 0;
+  color: $white-transparent-80;
+}
+
+.uploadLink {
+  color: #64B5F6;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #90CAF9;
+  }
+}
+
+.uploadInfo {
+  font-size: $font-size-base;
+  color: $white-transparent-60;
+  margin: 0;
+}
+
+.fileInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.uploadSummary {
+  @include flex-between();
+  margin-top: $border-radius-xlarge;
+  padding: $spacing-md $spacing-xl;
+  @include glass-effect();
+  border-radius: $border-radius-large;
+  backdrop-filter: blur(10px);
+}
+
+.fileCount {
+  color: white;
+  font-weight: 500;
+}
+
+.totalSize {
+  color: $white-transparent-80;
+  font-size: $font-size-base;
+}
+
+@include mobile {
+  .uploadContent {
+    padding: $spacing-xxxl $spacing-xxl;
+  }
+
+  .uploadTitle {
+    font-size: 1.3rem;
+  }
+
+  .uploadSubtitle {
+    font-size: $font-size-md;
+  }
+
+  .uploadSummary {
+    flex-direction: column;
+    gap: $spacing-sm;
+    text-align: center;
+  }
+}
