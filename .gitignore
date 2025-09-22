@@ -54,3 +54,5 @@ temp/
 # Package lock files (optional, comment if you want to include)
 # package-lock.json
 # yarn.lock
+
+.history

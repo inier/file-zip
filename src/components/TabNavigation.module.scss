@@ -1,0 +1,53 @@
+@import '../styles/mixins';
+
+.tabButtons {
+  @include flex-center();
+  @include glass-effect();
+  border-radius: $border-radius-xlarge;
+  padding: $spacing-sm;
+  gap: 4px;
+  margin-bottom: 2rem;
+}
+
+.tabButton {
+  @include flex-center();
+  gap: $spacing-sm;
+  background: none;
+  border: none;
+  color: $white-transparent-70;
+  padding: $spacing-md $spacing-xxl;
+  border-radius: $border-radius-large;
+  font-size: $font-size-md;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  
+  &:hover {
+    color: white;
+    background: $white-transparent-10;
+  }
+  
+  &.active {
+    background: $white-transparent-20;
+    color: white;
+    box-shadow: $shadow-medium;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+@include mobile {
+  .tabButtons {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  .tabButton {
+    padding: $spacing-md $border-radius-xlarge;
+    font-size: $font-size-base;
+    justify-content: flex-start;
+  }
+}
