@@ -32,6 +32,34 @@
   }
 }
 
+// 完整按钮样式混合
+@mixin button-style() {
+  @include button-base();
+  padding: $spacing-md $spacing-xl;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  border: none;
+  border-radius: $border-radius-medium;
+  font-size: $font-size-base;
+  font-weight: 600;
+  text-decoration: none;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
 // 卡片样式混合
 @mixin card-style() {
   @include glass-effect();
