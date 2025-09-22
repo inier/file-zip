@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { fileStore, CompressedFile } from '../store/FileStore';
 import { compressionService } from '../services/CompressionService';
+import { TrashIcon, DownloadIcon, RemoveIcon } from './icons';
 import styles from './CompressedFileList.module.scss';
 
 export const CompressedFileList: React.FC = observer(() => {
@@ -49,15 +50,7 @@ export const CompressedFileList: React.FC = observer(() => {
             onClick={handleClearAll}
             title="清空所有压缩文件"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <TrashIcon width={16} height={16} />
             清空
           </button>
         </div>
@@ -92,31 +85,7 @@ export const CompressedFileList: React.FC = observer(() => {
                 onClick={() => handleDownload(file)}
                 title="下载文件"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polyline
-                    points="7,10 12,15 17,10"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <line
-                    x1="12"
-                    y1="15"
-                    x2="12"
-                    y2="3"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <DownloadIcon width={16} height={16} />
                 下载
               </button>
               
@@ -125,28 +94,7 @@ export const CompressedFileList: React.FC = observer(() => {
                 onClick={() => handleRemove(file.id)}
                 title="移除文件"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <line
-                    x1="18"
-                    y1="6"
-                    x2="6"
-                    y2="18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <line
-                    x1="6"
-                    y1="6"
-                    x2="18"
-                    y2="18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <RemoveIcon width={16} height={16} />
               </button>
             </div>
           </div>

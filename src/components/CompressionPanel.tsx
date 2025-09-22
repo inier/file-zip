@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { fileStore } from '../store/FileStore';
 import { compressionService, CompressionFormat, CompressionOptions } from '../services/CompressionService';
+import { FilePackageIcon, ErrorIcon } from './icons';
 import styles from './CompressionPanel.module.scss';
 
 export const CompressionPanel: React.FC = observer(() => {
@@ -149,27 +150,7 @@ export const CompressionPanel: React.FC = observer(() => {
             </>
           ) : (
             <>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect
-                  x="9"
-                  y="9"
-                  width="13"
-                  height="13"
-                  rx="2"
-                  ry="2"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <FilePackageIcon width={16} height={16} />
               开始压缩 ({fileStore.compressionFiles.length} 个文件)
             </>
           )}
@@ -208,11 +189,7 @@ export const CompressionPanel: React.FC = observer(() => {
         {/* 错误信息 */}
         {fileStore.error && (
           <div className={styles.errorMessage}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-              <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
-              <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
-            </svg>
+            <ErrorIcon width={16} height={16} />
             {fileStore.error}
           </div>
         )}

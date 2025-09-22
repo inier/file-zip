@@ -19,6 +19,8 @@ export {
   DownloadIcon,
   TrashIcon,
   ClearIcon,
+  RemoveIcon,
+  FileSelectIcon,
   EyeIcon,
 } from './FileIcons';
 

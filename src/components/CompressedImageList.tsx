@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { fileStore } from '../store/FileStore';
 import { imageCompressionService, CompressedImageResult } from '../services/ImageCompressionService';
+import { ImageOptimizeIcon, DownloadIcon, TrashIcon, RemoveIcon } from './icons';
 import styles from './CompressedImageList.module.scss';
 
 export const CompressedImageList: React.FC = observer(() => {
@@ -58,11 +59,7 @@ export const CompressedImageList: React.FC = observer(() => {
       <div className={styles.listHeader}>
         <div className={styles.headerTitle}>
           <h3 className={styles.title}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
-              <polyline points="21,15 16,10 5,21" stroke="currentColor" strokeWidth="2"/>
-            </svg>
+            <ImageOptimizeIcon width={20} height={20} />
             压缩完成 ({fileStore.compressedImages.length} 张)
           </h3>
           <div className={styles.compressionStats}>
@@ -87,31 +84,7 @@ export const CompressedImageList: React.FC = observer(() => {
             onClick={handleDownloadAll}
             title="下载所有图片"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <polyline
-                points="7,10 12,15 17,10"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <line
-                x1="12"
-                y1="15"
-                x2="12"
-                y2="3"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
+            <DownloadIcon width={16} height={16} />
             全部下载
           </button>
           
@@ -120,15 +93,7 @@ export const CompressedImageList: React.FC = observer(() => {
             onClick={handleClearAll}
             title="清空列表"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <TrashIcon width={16} height={16} />
             清空
           </button>
         </div>
@@ -200,31 +165,7 @@ export const CompressedImageList: React.FC = observer(() => {
                 onClick={() => handleDownload(result)}
                 title="下载图片"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polyline
-                    points="7,10 12,15 17,10"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <line
-                    x1="12"
-                    y1="15"
-                    x2="12"
-                    y2="3"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <DownloadIcon width={16} height={16} />
                 下载
               </button>
               
@@ -233,28 +174,7 @@ export const CompressedImageList: React.FC = observer(() => {
                 onClick={() => handleRemove(result.id)}
                 title="移除"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <line
-                    x1="18"
-                    y1="6"
-                    x2="6"
-                    y2="18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <line
-                    x1="6"
-                    y1="6"
-                    x2="18"
-                    y2="18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <RemoveIcon width={16} height={16} />
               </button>
             </div>
           </div>

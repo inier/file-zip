@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { fileStore } from '../store/FileStore';
 import { imageCompressionService, ImageCompressionOptions } from '../services/ImageCompressionService';
+import { ImageOptimizeIcon } from './icons';
 import styles from './ImageCompressionPanel.module.scss';
 
 export const ImageCompressionPanel: React.FC = observer(() => {
@@ -101,11 +102,7 @@ export const ImageCompressionPanel: React.FC = observer(() => {
   return (
     <div className={styles.imageCompressionPanel}>
       <h3 className={styles.panelTitle}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
-          <polyline points="21,15 16,10 5,21" stroke="currentColor" strokeWidth="2"/>
-        </svg>
+        <ImageOptimizeIcon width={20} height={20} />
         图片压缩设置
       </h3>
       
@@ -245,11 +242,7 @@ export const ImageCompressionPanel: React.FC = observer(() => {
             </>
           ) : (
             <>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
-                <polyline points="21,15 16,10 5,21" stroke="currentColor" strokeWidth="2"/>
-              </svg>
+              <ImageOptimizeIcon width={16} height={16} />
               压缩图片 ({imageFiles.length} 张)
             </>
           )}
