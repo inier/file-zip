@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { Header } from './Header';
 import { Navigation } from './Navigation';
 import { GlobalError } from './GlobalError';
@@ -11,7 +10,7 @@ interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-export const AppLayout: React.FC<AppLayoutProps> = observer(({ children }) => {
+export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -36,4 +35,4 @@ export const AppLayout: React.FC<AppLayoutProps> = observer(({ children }) => {
       </div>
     </div>
   );
-});
+};

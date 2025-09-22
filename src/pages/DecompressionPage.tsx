@@ -1,9 +1,8 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
 import { DecompressionPanel } from '../components/DecompressionPanel';
 import styles from './Page.module.scss';
 
-export const DecompressionPage: React.FC = observer(() => {
+export const DecompressionPage: React.FC = () => {
   return (
     <div className={styles.page}>
       <div className={styles.pageHeader}>
@@ -18,4 +17,4 @@ export const DecompressionPage: React.FC = observer(() => {
       </div>
     </div>
   );
-});
+};

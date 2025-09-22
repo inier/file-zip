@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
 import { FolderIcon } from './icons';
 import styles from './Header.module.scss';
 
@@ -8,7 +7,7 @@ interface HeaderProps {
   subtitle?: string;
 }
 
-export const Header: React.FC<HeaderProps> = observer(({ title, subtitle }) => {
+export const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -22,4 +21,4 @@ export const Header: React.FC<HeaderProps> = observer(({ title, subtitle }) => {
       </div>
     </header>
   );
-});
+};
