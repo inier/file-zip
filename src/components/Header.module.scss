@@ -2,7 +2,7 @@
 
 .header {
   @include glass-effect();
-  border-radius: $border-radius-xxlarge;
+  // border-radius: $border-radius-xxlarge;
   padding: $spacing-xxl $spacing-xxxl;
   margin-bottom: $spacing-xxxl;
   box-shadow: $shadow-large;
