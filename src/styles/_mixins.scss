@@ -144,3 +144,10 @@
 @mixin gradient-background() {
   background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
 }
+
+// 玉粒卡片混合
+@mixin glass-card() {
+  @include glass-effect();
+  border-radius: $border-radius-xlarge;
+  overflow: hidden;
+}

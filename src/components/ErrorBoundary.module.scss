@@ -1,0 +1,138 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.errorBoundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.errorContent {
+  @include glass-card;
+  max-width: 600px;
+  width: 100%;
+  padding: 3rem;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.errorIcon {
+  margin-bottom: 2rem;
+  color: #f44336;
+  
+  svg {
+    filter: drop-shadow(0 0 20px rgba(244, 67, 54, 0.3));
+  }
+}
+
+.errorTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.homeButton {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.retryButton {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  }
+}
+
+.homeButton {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+  }
+}
+
+.errorDetails {
+  margin-top: 2rem;
+  text-align: left;
+  
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+}
+
+.errorStack {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .errorBoundary {
+    padding: 1rem;
+  }
+  
+  .errorContent {
+    padding: 2rem;
+  }
+  
+  .errorTitle {
+    font-size: 1.5rem;
+  }
+  
+  .errorActions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .retryButton,
+  .homeButton {
+    width: 100%;
+    max-width: 200px;
+  }
+}

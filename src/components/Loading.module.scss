@@ -1,0 +1,122 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 2rem;
+  
+  &.small {
+    min-height: 100px;
+    padding: 1rem;
+  }
+  
+  &.large {
+    min-height: 400px;
+    padding: 3rem;
+  }
+}
+
+.loadingContent {
+  text-align: center;
+}
+
+.spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  
+  .small & {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+  
+  .large & {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+  }
+}
+
+.spinnerRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top: 3px solid;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  
+  &:nth-child(1) {
+    border-top-color: #667eea;
+    animation-duration: 1.2s;
+  }
+  
+  &:nth-child(2) {
+    border-top-color: #764ba2;
+    animation-duration: 1.6s;
+    animation-direction: reverse;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+  }
+  
+  &:nth-child(3) {
+    border-top-color: rgba(255, 255, 255, 0.3);
+    animation-duration: 2s;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingMessage {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 500;
+  
+  .small & {
+    font-size: 0.9rem;
+  }
+  
+  .large & {
+    font-size: 1.2rem;
+  }
+}
+
+// 页面级Loading的特殊样式
+.pageLoading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  
+  .loadingContent {
+    @include glass-card;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
