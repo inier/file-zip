@@ -6,21 +6,21 @@ import styles from './HomePage.module.scss';
 export const HomePage: React.FC = () => {
   const features = [
     {
-      icon: <FilePackageIcon width={48} height={48} />,
+      icon: <FilePackageIcon width={56} height={56} />,
       title: '文件压缩',
       description: '支持ZIP、GZIP、Deflate等多种格式',
       link: '/compress',
       color: '#4CAF50'
     },
     {
-      icon: <ImageOptimizeIcon width={48} height={48} />,
+      icon: <ImageOptimizeIcon width={56} height={56} />,
       title: '图片压缩',
       description: '智能图片优化，保持质量减小体积',
       link: '/image-compress',
       color: '#2196F3'
     },
     {
-      icon: <FileExtractIcon width={48} height={48} />,
+      icon: <FileExtractIcon width={56} height={56} />,
       title: '文件解压',
       description: '解压多种压缩格式的文件',
       link: '/decompress',

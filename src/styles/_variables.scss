@@ -6,9 +6,12 @@ $error-color: #F44336;
 $warning-color: #FF9800;
 $info-color: #2196F3;
 $image-compression-color: #E91E63;
+$title-bg-color-start: #162983;
+$title-bg-color-end: #764ba2;
 
 // 背景渐变
 $primary-gradient: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+$title-bg-gradient: linear-gradient(135deg, $title-bg-color-start 0%, $title-bg-color-end 100%);
 
 // 透明度颜色
 $white-transparent-10: rgba(255, 255, 255, 0.1);
