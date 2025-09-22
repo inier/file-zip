@@ -31,21 +31,64 @@ export const usePWAInstall = () => {
   });
 
   useEffect(() => {
-    // 检查是否为独立模式（已安装）
-    const isStandalone = 
-      window.matchMedia('(display-mode: standalone)').matches ||
-      (window.navigator as any).standalone ||
-      document.referrer.includes('android-app://');
+    // 更健壮的独立模式检测
+    const checkStandaloneMode = () => {
+      // 方法1: CSS媒体查询检测
+      const standaloneQuery = window.matchMedia('(display-mode: standalone)');
+      
+      // 方法2: iOS Safari检测
+      const iosSafariStandalone = (window.navigator as any).standalone === true;
+      
+      // 方法3: Android应用检测
+      const androidApp = document.referrer.includes('android-app://');
+      
+      // 方法4: 检查URL中是否有特定参数（某些浏览器会添加）
+      const urlStandalone = window.location.search.includes('standalone=true');
+      
+      const isStandalone = standaloneQuery.matches || iosSafariStandalone || androidApp || urlStandalone;
+      
+      // 调试信息
+      console.log('PWA Standalone 检测:', {
+        mediaQuery: standaloneQuery.matches,
+        iosSafari: iosSafariStandalone,
+        androidApp,
+        urlParam: urlStandalone,
+        finalResult: isStandalone
+      });
+      
+      return isStandalone;
+    };
 
-    // 检查是否已安装
-    const isInstalled = isStandalone || 
-      localStorage.getItem('pwa-installed') === 'true';
+    const isStandalone = checkStandaloneMode();
+    
+    // 检查是否已安装（结合多种方式）
+    const storageInstalled = localStorage.getItem('pwa-installed') === 'true';
+    const isInstalled = isStandalone || storageInstalled;
 
     setState(prev => ({
       ...prev,
       isStandalone,
       isInstalled
     }));
+
+    // 监听媒体查询变化
+    const standaloneQuery = window.matchMedia('(display-mode: standalone)');
+    const handleDisplayModeChange = (e: MediaQueryListEvent) => {
+      console.log('Display mode 变化:', e.matches);
+      setState(prev => ({
+        ...prev,
+        isStandalone: e.matches,
+        isInstalled: e.matches || storageInstalled
+      }));
+    };
+    
+    // 兼容性处理
+    if (standaloneQuery.addEventListener) {
+      standaloneQuery.addEventListener('change', handleDisplayModeChange);
+    } else {
+      // 兼容老版本浏览器
+      standaloneQuery.addListener(handleDisplayModeChange);
+    }
 
     // 监听安装提示事件
     const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
@@ -73,9 +116,17 @@ export const usePWAInstall = () => {
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleAppInstalled);
 
+    // 清理函数
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleAppInstalled);
+      
+      // 移除媒体查询监听器
+      if (standaloneQuery.removeEventListener) {
+        standaloneQuery.removeEventListener('change', handleDisplayModeChange);
+      } else {
+        standaloneQuery.removeListener(handleDisplayModeChange);
+      }
     };
   }, []);
 

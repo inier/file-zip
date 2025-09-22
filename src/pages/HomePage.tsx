@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FilePackageIcon, ImageOptimizeIcon, FileExtractIcon } from '../components/icons';
 import { PWAInstall } from '../components/PWAInstall';
+import { PWADebugInfo } from '../components/PWADebugInfo';
 import styles from './HomePage.module.scss';
 
 export const HomePage: React.FC = () => {
@@ -78,6 +79,9 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* PWA 调试信息（仅开发环境） */}
+      <PWADebugInfo />
     </div>
   );
 };
