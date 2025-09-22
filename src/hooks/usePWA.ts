@@ -33,7 +33,7 @@ export const usePWAInstall = () => {
   useEffect(() => {
     // 更健壮的独立模式检测
     const checkStandaloneMode = () => {
-      // 方法1: CSS媒体查询检测
+      // 方法1: CSS媒体查询检测 - 最可靠的方法
       const standaloneQuery = window.matchMedia('(display-mode: standalone)');
       
       // 方法2: iOS Safari检测
@@ -42,39 +42,68 @@ export const usePWAInstall = () => {
       // 方法3: Android应用检测
       const androidApp = document.referrer.includes('android-app://');
       
-      // 方法4: 检查URL中是否有特定参数（某些浏览器会添加）
+      // 方法4: 检查URL中是否有特定参数
       const urlStandalone = window.location.search.includes('standalone=true');
       
-      const isStandalone = standaloneQuery.matches || iosSafariStandalone || androidApp || urlStandalone;
+      // 方法5: 检查窗口对象的特殊属性（某些PWA容器会设置）
+      const windowStandalone = !!(window as any).matchMedia && 
+        window.matchMedia('(display-mode: standalone)').matches;
       
-      // 调试信息
-      console.log('PWA Standalone 检测:', {
+      // 方法6: 检查navigator的webdriver属性（排除自动化测试环境）
+      const notAutomated = !(navigator as any).webdriver;
+      
+      // 方法7: 检查是否从主屏幕启动（通过start_url参数）
+      const fromHomeScreen = window.location.pathname === '/' && 
+        !document.referrer.includes(window.location.hostname);
+      
+      const isStandalone = (standaloneQuery.matches || 
+        iosSafariStandalone || 
+        androidApp || 
+        urlStandalone) && notAutomated;
+      
+      // 详细调试信息
+      console.log('PWA Standalone 详细检测:', {
         mediaQuery: standaloneQuery.matches,
         iosSafari: iosSafariStandalone,
         androidApp,
         urlParam: urlStandalone,
+        windowStandalone,
+        notAutomated,
+        fromHomeScreen,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer,
         finalResult: isStandalone
       });
       
       return isStandalone;
     };
 
-    const isStandalone = checkStandaloneMode();
-    
-    // 检查是否已安装（结合多种方式）
-    const storageInstalled = localStorage.getItem('pwa-installed') === 'true';
-    const isInstalled = isStandalone || storageInstalled;
+    // 延迟检测，确保DOM完全加载
+    const delayedCheck = () => {
+      const isStandalone = checkStandaloneMode();
+      
+      // 检查是否已安装（结合多种方式）
+      const storageInstalled = localStorage.getItem('pwa-installed') === 'true';
+      const isInstalled = isStandalone || storageInstalled;
 
-    setState(prev => ({
-      ...prev,
-      isStandalone,
-      isInstalled
-    }));
+      setState(prev => ({
+        ...prev,
+        isStandalone,
+        isInstalled
+      }));
+    };
+
+    // 立即检测一次
+    delayedCheck();
+    
+    // 短延迟后再检测一次，确保状态准确
+    const timeoutId = setTimeout(delayedCheck, 100);
 
     // 监听媒体查询变化
     const standaloneQuery = window.matchMedia('(display-mode: standalone)');
     const handleDisplayModeChange = (e: MediaQueryListEvent) => {
       console.log('Display mode 变化:', e.matches);
+      const storageInstalled = localStorage.getItem('pwa-installed') === 'true';
       setState(prev => ({
         ...prev,
         isStandalone: e.matches,
@@ -118,6 +147,7 @@ export const usePWAInstall = () => {
 
     // 清理函数
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleAppInstalled);
       
