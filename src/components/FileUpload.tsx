@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { fileStore } from '../store/FileStore';
 import { useFileClassification } from '../hooks/useFileClassification';
+import { UploadIcon } from './icons';
+import { formatFileSize } from '../utils/constants';
 import styles from './FileUpload.module.scss';
 
 interface FileUploadProps {
@@ -99,14 +101,6 @@ export const FileUpload: React.FC<FileUploadProps> = observer(({
     e.target.value = '';
   }, [maxSize, onFilesAdded, activeTab, addFilesForTab]);
 
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
-
   return (
     <div className={`${styles.fileUpload} ${isDragOver ? styles.dragOver : ''}`}>
       <div
@@ -118,38 +112,7 @@ export const FileUpload: React.FC<FileUploadProps> = observer(({
       >
         <div className={styles.uploadContent}>
           <div className={styles.uploadIcon}>
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <polyline
-                points="14,2 14,8 20,8"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <line
-                x1="12"
-                y1="18"
-                x2="12"
-                y2="12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <polyline
-                points="9,15 12,12 15,15"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <UploadIcon />
           </div>
 
           <div className={styles.uploadText}>
