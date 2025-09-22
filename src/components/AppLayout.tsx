@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// import { Header } from './Header';
+import { Header } from './Header';
 import { Navigation } from './Navigation';
 import { GlobalError } from './GlobalError';
 import { GlobalProgress } from './GlobalProgress';
@@ -17,11 +17,11 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <div className={styles.appLayout}>
       <div className={styles.container}>
-        {/* <Header 
+        <Header 
           title="文件压缩解压工具" 
           subtitle="支持ZIP、GZIP、Deflate等多种格式的文件压缩和解压缩"
         />
-         */}
+        
         {!isHomePage && (
           <Navigation />
         )}

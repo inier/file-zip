@@ -1,0 +1,235 @@
+@import '../styles/mixins';
+
+.pwaContainer {
+  position: relative;
+}
+
+.installPrompt,
+.updatePrompt {
+  @include glass-effect();
+  border-radius: $border-radius-medium;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideInDown 0.3s ease-out;
+}
+
+.installPrompt {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+.updatePrompt {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1));
+}
+
+.promptContent {
+  @include flex-between();
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.promptText {
+  flex: 1;
+  
+  h3 {
+    margin: 0 0 $spacing-xs 0;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: var(--text-color, white);
+  }
+  
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+  }
+}
+
+.promptActions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.installButton,
+.updateButton {
+  @include button-style();
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  border: none;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-medium;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.updateButton {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  }
+}
+
+.notification {
+  position: fixed;
+  top: $spacing-lg;
+  right: $spacing-lg;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-out 2.7s;
+}
+
+.notificationContent {
+  @include glass-effect();
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(139, 195, 74, 0.9));
+  color: white;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius-medium;
+  font-weight: 600;
+  box-shadow: $shadow-large;
+}
+
+.pwaFeatures {
+  @include glass-effect();
+  border-radius: $border-radius-medium;
+  padding: $spacing-lg;
+  margin-top: $spacing-lg;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    font-size: $font-size-md;
+    font-weight: 600;
+    color: var(--text-color, white);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: $spacing-xs 0;
+      font-size: $font-size-sm;
+      color: var(--text-secondary, rgba(255, 255, 255, 0.8));
+      
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: $primary-color;
+        margin-right: $spacing-sm;
+      }
+    }
+  }
+}
+
+// 动画
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// 响应式设计
+@include mobile {
+  .promptContent {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+  }
+
+  .promptActions {
+    justify-content: center;
+  }
+
+  .notification {
+    top: $spacing-md;
+    right: $spacing-md;
+    left: $spacing-md;
+  }
+
+  .pwaFeatures {
+    margin-top: $spacing-md;
+    padding: $spacing-md;
+  }
+}
+
+// 深色主题适配
+[data-theme="dark"] {
+  .installPrompt,
+  .updatePrompt {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .pwaFeatures {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+// 浅色主题适配
+[data-theme="light"] {
+  .installPrompt,
+  .updatePrompt,
+  .pwaFeatures {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .promptText h3,
+  .pwaFeatures h4 {
+    color: #333333;
+  }
+
+  .promptText p,
+  .pwaFeatures li {
+    color: #666666;
+  }
+}

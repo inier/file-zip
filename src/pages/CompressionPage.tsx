@@ -4,7 +4,9 @@ import { FileUpload } from '../components/FileUpload';
 import { FileList } from '../components/FileList';
 import { CompressionPanel } from '../components/CompressionPanel';
 import { CompressedFileList } from '../components/CompressedFileList';
+import { BatchProcessor } from '../components/BatchProcessor';
 import { useFileClassification } from '../hooks/useFileClassification';
+import { fileStore } from '../store/FileStore';
 import styles from './Page.module.scss';
 
 export const CompressionPage: React.FC = observer(() => {
@@ -29,6 +31,21 @@ export const CompressionPage: React.FC = observer(() => {
         
         {currentFiles.length > 0 && (
           <FileList activeTab="compress" />
+        )}
+        
+        {/* 批量处理功能 */}
+        {currentFiles.length > 1 && (
+          <BatchProcessor 
+            files={currentFiles}
+            onFilesChange={(files) => {
+              // 重新设置文件列表
+              fileStore.clearCompressionFiles();
+              if (files.length > 0) {
+                const fileObjects = files.map(item => item.file);
+                fileStore.addCompressionFiles(fileObjects);
+              }
+            }}
+          />
         )}
         
         <CompressionPanel />

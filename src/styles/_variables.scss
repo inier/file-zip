@@ -9,6 +9,31 @@ $image-compression-color: #E91E63;
 $title-bg-color-start: #162983;
 $title-bg-color-end: #764ba2;
 
+// 主题CSS变量定义
+:root {
+  // 浅色主题
+  &[data-theme="light"] {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+  }
+
+  // 深色主题
+  &[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --nav-bg: rgba(30, 30, 30, 0.95);
+  }
+}
+
 // 背景渐变
 $primary-gradient: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
 $title-bg-gradient: linear-gradient(135deg, $title-bg-color-start 0%, $title-bg-color-end 100%);

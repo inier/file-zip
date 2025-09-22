@@ -1,0 +1,71 @@
+{
+  "name": "文件压缩解压工具",
+  "short_name": "文件压缩",
+  "description": "支持多种格式的文件压缩和解压缩工具",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity"],
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png", 
+      "form_factor": "wide"
+    }
+  ],
+  "features": [
+    "文件压缩",
+    "文件解压",
+    "图片压缩",
+    "批量处理",
+    "离线使用"
+  ],
+  "shortcuts": [
+    {
+      "name": "文件压缩",
+      "short_name": "压缩",
+      "description": "快速压缩文件",
+      "url": "/compress",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "文件解压",
+      "short_name": "解压",
+      "description": "解压缩文件",
+      "url": "/decompress", 
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "图片压缩",
+      "short_name": "图片",
+      "description": "压缩图片文件",
+      "url": "/image-compress",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

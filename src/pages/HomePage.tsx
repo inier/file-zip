@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FilePackageIcon, ImageOptimizeIcon, FileExtractIcon } from '../components/icons';
+import { PWAInstall } from '../components/PWAInstall';
 import styles from './HomePage.module.scss';
 
 export const HomePage: React.FC = () => {
@@ -36,6 +37,8 @@ export const HomePage: React.FC = () => {
           专业的在线文件处理工具，支持多种格式的压缩和解压缩
         </p>
       </div>
+
+      <PWAInstall />
 
       <div className={styles.features}>
         {features.map((feature, index) => (
